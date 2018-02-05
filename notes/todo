@@ -1,0 +1,2 @@
+1 - create script that creates a yaml out of bug data
+2 - create a travis CI script to do basic checks on yaml file
