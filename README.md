@@ -5,4 +5,6 @@ Data for [vulnerabilityhistory.org](http://vulnerabilityhistory.org/)
 
 Every push and pull request is run against our integrity checkers on Travis. Click on the above tag to see the status of the build.
 
+--
 
+# [Contributor Notes](https://github.com/andymeneely/httpd-vulnerabilities/blob/master/CONTRIBUTING.md)
