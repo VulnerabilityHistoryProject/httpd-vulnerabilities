@@ -7,4 +7,4 @@ Every push and pull request is run against our integrity checkers on Travis. Cli
 
 --
 
-# [Contributor Notes](https://github.com/andymeneely/httpd-vulnerabilities/blob/master/CONTRIBUTING.md)
+### [Contributor Notes](https://github.com/andymeneely/httpd-vulnerabilities/blob/master/CONTRIBUTING.md)
