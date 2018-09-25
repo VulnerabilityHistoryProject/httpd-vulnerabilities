@@ -1,19 +1,17 @@
-require 'rspec'
 require 'rspec/core/rake_task'
 require 'yaml'
 require_relative 'scripts/cve_spec'
-require_relative 'scripts/spec_helper'
 
 desc 'Run the specs by default'
-task default: :check_new_cves
+task default: :spec
 
-#RSpec::Core::RakeTask.new(:spec)
+RSpec::Core::RakeTask.new(:spec)
 
-#namespace :syntax do
+namespace :cve do
 
   desc 'Use cve_spec and cve_helper to check incoming cve*** yaml files'
   task :check_new_cves do
     puts "Reading the ymls..."
     ruby 'scripts/cve_spec.rb'
   end
-#end
+end
