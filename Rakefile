@@ -1,6 +1,6 @@
 require 'rspec/core/rake_task'
 require 'yaml'
-require_relative 'scripts/cve_spec.rb'
+require_relative 'spec/cve_spec.rb'
 
 desc 'Run the specs by default'
 task default: :spec
