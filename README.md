@@ -19,7 +19,7 @@ Please see the assignments folder for information about your project.
   4. Run `bundle exec rake`
 
   If the output has no *failures*, then it checks out!
-  (https://github.com/VulnerabilityHistoryProject/httpd-vulnerabilities/blob/readme-update/screenshots/successful-unit-test.png)
+ ![Test Successful Screenshot] (https://github.com/VulnerabilityHistoryProject/httpd-vulnerabilities/blob/readme-update/screenshots/successful-unit-test.png)
 
 ### [Contributor Notes](https://github.com/andymeneely/httpd-vulnerabilities/blob/master/CONTRIBUTING.md)
 
