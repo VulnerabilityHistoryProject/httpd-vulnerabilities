@@ -18,7 +18,8 @@ Please see the assignments folder for information about your project.
   3. `cd` to the root of this repo, run `bundle install`
   4. Run `bundle exec rake`
 
-  If shows n number of example and no failures, then your good to go!
+  If the output has no *failures*, then it checks out!
+  (https://github.com/VulnerabilityHistoryProject/httpd-vulnerabilities/successful-unit-test.png)
 
 ### [Contributor Notes](https://github.com/andymeneely/httpd-vulnerabilities/blob/master/CONTRIBUTING.md)
 
