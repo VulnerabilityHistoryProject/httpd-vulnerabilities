@@ -8,7 +8,7 @@ Every push and pull request is run against our integrity checkers on Travis. Cli
 
 # For SWEN 331 Students
 
-Please see the assignments folder for information about your project.
+Please see the [assignments](assignment/) folder for information about your project.
 
 ## Testing project locally
 
