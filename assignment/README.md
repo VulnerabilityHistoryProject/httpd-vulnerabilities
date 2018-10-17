@@ -35,7 +35,7 @@ You will be given 2-3 vulnerabilities to research for the first round. Here's wh
 
   4. **Open up your CVE files in a good text editor**. For example, `cves/CVE-2011-3092.yml`. You will be editing [YAML](http://yaml.org)  for this assignment, which is a human-friendly JSON-like format that we use for structuring our data. Here's another [helpful link about YAML](http://yaml.org/YAML_for_ruby.html). It would be helpful if your text editor support syntax highlighting of YAML files so you can avoid syntax errors. My personal favorites are [Atom](http://atom.io) and [SublimeText](https://www.sublimetext.com/3).
 
-  ![Sample Yaml File](/screenshots/sample-yaml-file.png)
+  ![Sample Yaml File](/screenshots/sample-file-yaml.png)
   5. **Read the research notes** that are currently there for the vulnerability, including the questions that need to be filled out.
   6. **Set `curated` to `true`** in your YAML file. Save the file.
   7. **Set up your pull request** using the submission instructions below.
