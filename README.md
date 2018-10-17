@@ -18,6 +18,7 @@ Please see the assignments folder for information about your project.
   4. Run `bundle exec rake`
 
   If the output has no *failures*, then it checks out!
+
  ![Test Successful Screenshot](/screenshots/successful-unit-test.png)
 
 ##
