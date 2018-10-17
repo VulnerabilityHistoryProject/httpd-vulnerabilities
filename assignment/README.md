@@ -1,13 +1,13 @@
 # SWEN 331 Vulnerability History Assignment
 
-The purpose of this assignment is to have you see some real vulnerabilities up close. When you see the kinds of vulnerabilities that can happen in real products, in real life, you get a sense for how difficult they can be to find and prevent.
+The purpose of this assignment is to have you see some *real vulnerabilities* up close. When you see the kinds of vulnerabilities that can happen in real products, in real life, you get a sense for how difficult they can be to find and prevent.
 
 A secondary purpose of this assignment is for you to contribute open source vulnerability history to the academic world. This assignment is also a data curation project that can produce data useful to researchers and developers alike.
 
 Broadly, your responsibilities are to:
 
   * **Correct** anything that you see is wrong in your CVE data. If we are missing a code review, a bug, or the information is clearly wrong, then correct it!
-  * **Investigate** the engineering history of this vulnerability. Not just how it was fixed, but how did it arise? How was it missed? What can we learn from it? And don't just copy-and-paste data - rewrite what you see in plain English so that future students, developers, and researchers can learn from these mistakes.
+  * **Investigate** the engineering history of this vulnerability. Not just how it was fixed, but how did it arise? How was it missed? What can we learn from it? And don't just *copy-and-paste data* - rewrite what you see in plain English so that future students, developers, and researchers can learn from these mistakes.
   * **Curate** the data by attempting to categorize it as carefully as you can. Providing links in your rationale is always welcome - cite your sources! And let future readers dig deep just like you did.
 
 ## Round 1. Investigate Vulnerabilities
@@ -18,7 +18,21 @@ You will be given 2-3 vulnerabilities to research for the first round. Here's wh
   2. **Give copyright consent and notify us of your GitHub username**. We would like you to contribute your work to a Creative Commons/MIT Licensed repository to be used in academic research. Also, please notify us via [this survey](https://goo.gl/forms/tV6pJ2uaCUoHk1GU2) what your GitHub username is so that we can trace your GitHub username to your RIT username. *NOTE: your contribution to open source is voluntary. We will make similar arrangements to submit your report privately if you do not wish to contribute to this research project. Your grade will not be affected.*
   2. **Get your CVEs from [here](https://docs.google.com/spreadsheets/d/e/2PACX-1vQqSIrlS6tPP72QHtla8PmbBu9EtQCvkiaPBiD080cFw2jOWB54u0g3bY8YsAbPFrqTkX_HVsARZFZz/pubhtml?gid=1030037765&single=true)**. Everyone will be assigned *three* CVEs to research. You are only required to research *two* of these. We give you a third in case one of these CVEs is a dead-end. Examples of a dead-end CVE would be: a vulnerability where the fix is ONLY updating the DEPS file, or a vulnerability where all of the bugs are embargoed.
   2. **Fork this repository.** You can read about forking [on GitHub's docs.](https://help.github.com/articles/fork-a-repo/)
-  3. **Clone this repository locally** using your favorite Git client.
+  3. **Clone this repository locally** using your favorite Git client or via command line.
+
+  To clone over https:
+
+  ```
+  git clone https://github.com/VulnerabilityHistoryProject/httpd-vulnerabilities.git
+  ```
+
+  To clone over SSH:
+
+  ```
+  git clone git@github.com:VulnerabilityHistoryProject/httpd-vulnerabilities.git
+
+  ```
+
   4. **Open up your CVE files in a good text editor**. For example, `cves/CVE-2011-3092.yml`. You will be editing [YAML](http://yaml.org)  for this assignment, which is a human-friendly JSON-like format that we use for structuring our data. Here's another [helpful link about YAML](http://yaml.org/YAML_for_ruby.html). It would be helpful if your text editor support syntax highlighting of YAML files so you can avoid syntax errors. My personal favorites are [Atom](http://atom.io) and [SublimeText](https://www.sublimetext.com/3).
   5. **Read the research notes** that are currently there for the vulnerability, including the questions that need to be filled out.
   6. **Set `curated` to `true`** in your YAML file. Save the file.
