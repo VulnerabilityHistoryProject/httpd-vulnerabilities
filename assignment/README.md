@@ -1,6 +1,6 @@
 # SWEN 331 Vulnerability History Assignment
 
-The purpose of this assignment is to have you see some *real vulnerabilities* up close. When you see the kinds of vulnerabilities that can happen in real products, in real life, you get a sense for how difficult they can be to find and prevent.
+The purpose of this assignment is to have you see some :sparkles: *real vulnerabilities* :sparkles: up close. When you see the kinds of vulnerabilities that can happen in real products, in real life, you get a sense for how difficult they can be to find and prevent.
 
 A secondary purpose of this assignment is for you to contribute open source vulnerability history to the academic world. This assignment is also a data curation project that can produce data useful to researchers and developers alike.
 
