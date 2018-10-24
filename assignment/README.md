@@ -1,16 +1,18 @@
 # SWEN 331 Vulnerability History Assignment
 
-The purpose of this assignment is to have you see some :sparkles: *real vulnerabilities* :sparkles: up close. When you see the kinds of vulnerabilities that can happen in real products, in real life, you get a sense for how difficult they can be to find and prevent.
+The purpose of this assignment is to have you see some :sparkles: *real vulnerabilities* :sparkles: up close. 
 
-A secondary purpose of this assignment is for you to contribute open source vulnerability history to the academic world. This assignment is also a data curation project that can produce data useful to researchers and developers alike.
+When you see the kinds of vulnerabilities that can happen in real products, in real life, you get a sense for how difficult they can be to find and prevent.
+
+A secondary purpose of this assignment is for you to *contribute* open source vulnerability history to the academic world. This assignment is also a data curation project that can produce data useful to researchers and developers alike.
 
 Broadly, your responsibilities are to:
 
-  * **Correct** anything that you see is wrong in your CVE data. If we are missing a code review, a bug, or the information is clearly wrong, then correct it!
+  * **Correct** anything that you see is wrong in your CVE data. If we are missing a code review, a bug, a VCC, or the information is clearly wrong, then correct it!
   * **Investigate** the engineering history of this vulnerability. Not just how it was fixed, but how did it arise? How was it missed? What can we learn from it? And don't just *copy-and-paste data* - rewrite what you see in plain English so that future students, developers, and researchers can learn from these mistakes.
   * **Curate** the data by attempting to categorize it as carefully as you can. Providing links in your rationale is always welcome - cite your sources! And let future readers dig deep just like you did.
 
-## Round 1. Investigate Vulnerabilities
+## Round 1. Investigate Vulnerabilities :mag:
 
 You will be given 2-3 vulnerabilities to research for the first round. Here's what you need to do:
 
@@ -39,7 +41,7 @@ You will be given 2-3 vulnerabilities to research for the first round. Here's wh
   7. **Set up your pull request** using the submission instructions below.
   7. **Go to the httpd source code**.
   8. **Find the vulnerability fix**. Generally speaking we should have these for you, but you may need to correct and fix the data. Go to the git repository that you downloaded and find the fix (`git show` is good for this). Make sure this fix makes sense for your vulnerability.
-  9. **Find the VCC** (Vulnerability-Contributing Commit). Next, we want to dig into the changes to the files that were affected by this change and attempt to find the commit(s) that introduced this vulnerability in the first place. For this, you will need to follow our example below, but it is essentially making use of `git blame`. Record the VCC commit hash in the data. *This is the most important part of the project in terms of its academic contribution*.
+  9. **Verify the VCC** (Vulnerability-Contributing Commit). Next, we want to dig into the changes to the files that were affected by this change and attempt to find the commit(s) that introduced this vulnerability in the first place. For this, you will need to follow our example below, but it is essentially making use of `git blame`. Check the VCC commit hash in the data and record any changes. *This is the most important part of the project in terms of its academic contribution*.
   10. **Find the commits between the VCC and fix**. Using `git log`, get the commits between the VCC(s) and fix(es). You do not need to record these - we will be collecting this automatically in the future based on your VCC. But, these will be the basis for the next step.
   11. **Read**. Begin reading the commit messages, bug reports, and code reviews between the VCC(s) and fix(es). Record any observations, such as major events or linguistic notes as you go. Do your best to get a "big picture" of how this development team works during this time, inferring anything you can about their process, expertise, constraints, etc.
   12. **Record your findings**. Research the following pieces and contribute them to your CVE YAML files. We have notes in the YAML about precisely what we are looking for. Also, we have a detailed example below that Prof. Meneely did himself.
@@ -58,7 +60,7 @@ You will be given 2-3 vulnerabilities to research for the first round. Here's wh
     * Mistakes report
   13. **Submit a Pull Request**. See below.
 
-### Round 1 Submission: Pull Request
+### Round 1 Submission: Pull Request :checkered_flag:
 
 Remember, though we have assigned you *three* CVEs, you are only responsible for researching *two*. We give you an extra in case of a dead-end. We cannot give extra credit for doing a third, but if you do all three we would consider it a donation of research data.
 
