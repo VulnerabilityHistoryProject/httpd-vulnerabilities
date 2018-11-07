@@ -1,4 +1,4 @@
-# SWEN 331 Vulnerability History Assignment
+:pushpin: # SWEN 331 Vulnerability History Assignment :pushpin:
 
 The purpose of this assignment is to have you see some :sparkles: *real vulnerabilities* :sparkles: up close. 
 
@@ -12,7 +12,7 @@ Broadly, your responsibilities are to:
   * **Investigate** the engineering history of this vulnerability. Not just how it was fixed, but how did it arise? How was it missed? What can we learn from it? And don't just *copy-and-paste data* - rewrite what you see in plain English so that future students, developers, and researchers can learn from these mistakes.
   * **Curate** the data by attempting to categorize it as carefully as you can. Providing links in your rationale is always welcome - cite your sources! And let future readers dig deep just like you did.
 
-## Round 1. Investigate Vulnerabilities :mag:
+## Round 1. :mag: Investigate Vulnerabilities 
 
 You will be given 2-3 vulnerabilities to research for the first round. Here's what you need to do:
 
