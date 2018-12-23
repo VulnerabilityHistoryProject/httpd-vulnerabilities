@@ -1,6 +1,9 @@
 require 'rspec/core/rake_task'
 require 'yaml'
 require_relative 'spec/cve_spec.rb'
+require_relative 'scripts/git_log_utils.rb'
+require_relative 'scripts/list_cve_data.rb'
+require_relative 'scripts/script_helpers.rb'
 
 desc 'Run the specs by default'
 task default: :spec
@@ -36,6 +39,16 @@ namespace :list do
     fixes = ListCVEData.new.get_fixes
     puts "Getting files from git"
     puts GitLogUtils.new('./tmp/src').get_files_from_shas(fixes).to_a
+  end
+
+  desc 'Output newline delimited list of git fixes for every CVE'
+  task :fixes do
+    ListCVEData.new.print_fixes
+  end
+
+  desc 'Output newline delimited list of CVE missing fix data'
+  task :missing_fixes do
+    ListCVEData.new.print_missing_fixes
   end
 
 end
