@@ -1,4 +1,4 @@
-:pushpin: # SWEN 331 Vulnerability History Assignment :pushpin:
+# :pushpin: SWEN 331 Vulnerability History Assignment :pushpin:
 
 The purpose of this assignment is to have you see some :sparkles: *real vulnerabilities* :sparkles: up close. 
 
