@@ -1,3 +1,4 @@
+require 'git'
 require_relative 'script_helpers'
 
 class GitLogUtils
@@ -8,10 +9,17 @@ class GitLogUtils
 
   def get_files_from_shas(fixes)
     files = []
+    errs = []
     fixes.each do |sha|
-      commit = @git.object(sha)
-      diff = @git.diff(commit, commit.parent)
-      files << diff.stats[:files].keys
+      begin
+        commit = @git.object(sha)
+        diff = @git.diff(commit, commit.parent)
+        files << diff.stats[:files].keys
+        print '.'
+      rescue => e
+        errs << e.message
+        print '?'
+      end
     end
     return files.flatten.uniq
   end

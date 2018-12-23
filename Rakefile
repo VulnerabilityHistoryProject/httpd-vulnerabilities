@@ -1,9 +1,11 @@
 require 'rspec/core/rake_task'
 require 'yaml'
+require 'csv'
 require_relative 'spec/cve_spec.rb'
 require_relative 'scripts/git_log_utils.rb'
 require_relative 'scripts/list_cve_data.rb'
 require_relative 'scripts/script_helpers.rb'
+
 
 desc 'Run the specs by default'
 task default: :spec
@@ -38,7 +40,11 @@ namespace :list do
     puts "Getting fixes from ymls..."
     fixes = ListCVEData.new.get_fixes
     puts "Getting files from git"
-    puts GitLogUtils.new('./tmp/src').get_files_from_shas(fixes).to_a
+    files = GitLogUtils.new('./tmp/src').get_files_from_shas(fixes)
+    CSV.open('./tmp/httpd-vulnerable-files.csv', 'w+') do |csv|
+      csv << [ 'filepath' ]
+      files.to_a.each { |f| csv << [f] }
+    end
   end
 
   desc 'Output newline delimited list of git fixes for every CVE'
