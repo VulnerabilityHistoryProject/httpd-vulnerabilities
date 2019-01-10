@@ -1,7 +1,6 @@
 require 'rspec/core/rake_task'
 require 'yaml'
 require 'csv'
-require 'open3'
 require_relative 'spec/cve_spec.rb'
 require_relative 'scripts/git_log_utils.rb'
 require_relative 'scripts/list_cve_data.rb'
