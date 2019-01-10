@@ -1,6 +1,7 @@
 require 'rspec/core/rake_task'
 require 'yaml'
 require 'csv'
+require 'open3'
 require_relative 'spec/cve_spec.rb'
 require_relative 'scripts/git_log_utils.rb'
 require_relative 'scripts/list_cve_data.rb'
@@ -22,12 +23,18 @@ namespace :cve do
 end
 
 namespace :git do
-
-  desc 'Clone the HTTPD repo into ./tmp/src'
+  workingDir = "#{ENV['GIT_REPOSITORY']}";
+  desc "Clone the HTTPD repo into #{workingDir}"
   task :clone do
+    workingDir = "#{ENV['GIT_REPOSITORY']}";
+    cloneCommand = "git clone https://github.com/apache/httpd.git"
+    if workingDir.to_s.empty?
+      workingDir = "./tmp"
+      cloneCommand = cloneCommand + " src"
+    end
     puts "Cloning httpd git repo..."
-    Dir.chdir('./tmp') do
-      puts `git clone https://github.com/apache/httpd.git src`
+    Dir.chdir(workingDir) do
+      puts `#{cloneCommand}`
     end
   end
 
@@ -38,10 +45,35 @@ namespace :list do
   desc 'Use Git to list all of the files that were fixed from a vulnerability'
   task :vulnerable_files do
     puts "Getting fixes from ymls..."
-    fixes = ListCVEData.new.get_fixes
+    tmpFixes = ListCVEData.new.get_fixes
+    fixes = []
     puts "Getting files from git"
-    files = GitLogUtils.new('./tmp/src').get_files_from_shas(fixes)
-    CSV.open('./tmp/httpd-vulnerable-files.csv', 'w+') do |csv|
+    gitRepository = "#{ENV['GIT_REPOSITORY']}"
+    outputFile = "#{ENV['OUTPUT_FILE']}"
+    gitStart = "#{ENV['GIT_START']}"
+    gitEnd = "#{ENV['GIT_END']}"
+    if gitRepository.to_s.empty?
+      gitRepository = "./tmp/src"
+    end
+    if outputFile.to_s.empty?
+      outputFile = './tmp/httpd-vulnerable-files.csv'
+    end    
+    if gitStart.to_s.empty? && gitEnd.to_s.empty?
+      fixes = tmpFixes
+    else
+      Dir.chdir(gitRepository) do
+        tmpFixes.each do |fix|
+          gitLogCommand = "git log --before=#{gitEnd} --after=#{gitStart} "+'--pretty=format:"%H" ' + fix + ' -1'
+          check = `#{gitLogCommand}`
+          if fix.to_s == check.chomp.to_s
+            fixes << fix
+          end
+        end
+      end
+    end
+    
+    files = GitLogUtils.new(gitRepository).get_files_from_shas(fixes)
+    CSV.open(outputFile, 'w+') do |csv|
       csv << [ 'filepath' ]
       files.to_a.each { |f| csv << [f] }
     end
