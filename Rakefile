@@ -37,11 +37,9 @@ namespace :git do
       puts `#{cloneCommand}`
     end
   end
-
 end
 
 namespace :list do
-
   desc 'Use Git to list all of the files that were fixed from a vulnerability'
   task :vulnerable_files do
     puts "Getting fixes from ymls..."
@@ -63,9 +61,11 @@ namespace :list do
     else
       Dir.chdir(gitRepository) do
         tmpFixes.each do |fix|
-          gitLogCommand = "git log --before=#{gitEnd} --after=#{gitStart} "+'--pretty=format:"%H" ' + fix + ' -1'
+          gitLogCommand = "git log --before=#{gitStart} "+'--pretty=format:"%H" ' + fix + ' -1'
           check = `#{gitLogCommand}`
           if fix.to_s == check.chomp.to_s
+            #ignore this CVE/fix since it took place BEFORE our start period
+          else
             fixes << fix
           end
         end

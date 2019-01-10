@@ -7,6 +7,7 @@ class ListCVEData
     cve_ymls.each do |yml_file|
       begin
         cve = File.open(yml_file) { |f| YAML.load(f) }
+        puts(cve)
         cve['fixes'].each do |fix|
           sha = fix['commit'].to_s +
                 fix[':commit:'].to_s +
