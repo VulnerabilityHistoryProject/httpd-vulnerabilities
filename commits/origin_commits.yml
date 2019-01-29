@@ -1,0 +1,8 @@
+# An "origin commit" is a commit that is the beginning of the project
+
+- commit: 5dbf830701af760e37e1e2c26212c34220516d85
+  note:  |
+    **Note from VHP curators**: this commit is not fully imported into VHP.
+    It is the original import of the HTTPD source tree in 1996, and involves
+    copying over thousands of files. To see more about it, head over to:
+    https://github.com/apache/httpd/commit/5dbf830701af760e37e1e2c26212c34220516d85.
