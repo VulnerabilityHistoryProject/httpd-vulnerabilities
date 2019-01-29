@@ -24,3 +24,14 @@ Please see the [assignments](assignment/) folder for information about your proj
 ##
 ### [Contributor Notes](https://github.com/andymeneely/httpd-vulnerabilities/blob/master/CONTRIBUTING.md)
 
+# Generate "Weeklies" Git Log Reports
+
+Make sure you have the Chromium repo cloned in `tmp/src`. From the root of the repo, run:
+
+```
+$ scripts/generate_weeklies.rb --skip-existing
+```
+
+Or for a clean build, you can delete all weeklies and start over.
+
+For a list of options it supports, run `scripts/generate_weeklies.rb`
