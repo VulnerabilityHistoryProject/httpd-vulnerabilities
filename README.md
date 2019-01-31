@@ -74,3 +74,5 @@ This script will do a `git log` on every vulnerable file and add it to the git l
 ```
 ruby scripts/add_vulnerable_file_commits.rb
 ```
+
+# Download Latest CVEs
