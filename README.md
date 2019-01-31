@@ -76,3 +76,9 @@ ruby scripts/add_vulnerable_file_commits.rb
 ```
 
 # Download Latest CVEs
+
+Run the HTTPD scraper to get all CVEs, and don't touch the ones that don't exist.
+
+This won't add fixes, just fill in the CVE into the skeleton.
+
+`$ rake pull:cves`
