@@ -1,19 +1,24 @@
+require 'require_all'
 require 'rspec/core/rake_task'
 require 'yaml'
 require 'csv'
-require_relative 'spec/cve_spec.rb'
-require_relative 'scripts/git_log_utils.rb'
-require_relative 'scripts/list_cve_data.rb'
-require_relative 'scripts/script_helpers.rb'
-
+require 'byebug'
+require_relative 'scripts/pull_latest_cves'
+require_rel 'spec'
 
 desc 'Run the specs by default'
 task default: :spec
 
 RSpec::Core::RakeTask.new(:spec)
 
-namespace :cve do
+namespace :pull do
+  desc 'Download latest CVEs from httpd.apache.org & create YML skeletons'
+  task :cves do
+    PullLatestCVEs.new.run
+  end
+end
 
+namespace :cve do
   desc 'Use cve_spec and cve_helper to check incoming cve*** yaml files'
   task :check_new_cves do
     puts "Reading the ymls..."
@@ -54,7 +59,7 @@ namespace :list do
     end
     if outputFile.to_s.empty?
       outputFile = './tmp/httpd-vulnerable-files.csv'
-    end    
+    end
     if gitStart.to_s.empty? && gitEnd.to_s.empty?
       fixes = tmpFixes
     else
@@ -70,7 +75,7 @@ namespace :list do
         end
       end
     end
-    
+
     files = GitLogUtils.new(gitRepository).get_files_from_shas(fixes)
     CSV.open(outputFile, 'w+') do |csv|
       csv << [ 'filepath' ]

@@ -1,4 +1,5 @@
 require 'mechanize'
+require_relative 'helpers'
 
 class PullLatestCVEs
   def httpd_security_pages
@@ -24,31 +25,29 @@ class PullLatestCVEs
     Mechanize.new.get(url) do |page|
       cur_cve = 'REPLACEME'
       page.links.each do | link |
-        cves << get_cve(link) if is_cve?(link)
+        if is_cve?(link)
+          cves << get_cve(link)
+        end
       end
     end
     return cves
   end
 
   def save(cves)
-    cves.each do |cve, fixes|
+    cves.each do |cve|
       next if cve_yaml_exists?(cve)
-      ymlstr = cve_skeleton_yml.sub(fix_skeleton, fix_ymlstr(fixes))
-                               .sub("CVE:\n", "CVE: #{cve}\n")
+      ymlstr = cve_skeleton_yml.sub("CVE:\n", "CVE: #{cve}\n")
       File.open(as_filename(cve), 'w+') { |f| f.write(ymlstr) }
       puts "Saved #{as_filename(cve)}"
     end
   end
 
   def run
-    cves = {}
+    cves = []
     httpd_security_pages.each do |url|
-      cves.merge! crawl(url) do |k, v1, v2|
-         # CVEs can be on multiple pages, so merge the fix lists
-        (v1 + v2).uniq
-      end
+      cves = (cves + crawl(url)).flatten.uniq
     end
-    save(cves)
+    save cves
   end
 
 end
