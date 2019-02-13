@@ -1,6 +1,7 @@
 name: HTTPD
 fullname: Apache HTTPD Web Server
 subdomain: httpd
+bg_color: '#af204c'
 project_url: https://httpd.apache.org/
 description: |
   Apache HTTPD is the most popular web server in the world.
