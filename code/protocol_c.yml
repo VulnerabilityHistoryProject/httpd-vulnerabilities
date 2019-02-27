@@ -1,0 +1,4 @@
+filepaths:
+  - server/protocol.c
+note: |
+  As the comment in the code states: "routines which directly communicate with the client." This file is one of the most committed-to of any file in the project. It's over 2500 lines of code with over 30 methods that handle various networking protocol tasks.
