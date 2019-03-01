@@ -8,5 +8,5 @@ gem 'git'
 # But it causes problems on installation so
 # we don't need it for everyone
 # gem 'nokogiri'
- gem 'mechanize'
+# gem 'mechanize'
  gem 'require_all'

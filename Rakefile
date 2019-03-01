@@ -2,9 +2,11 @@ require 'require_all'
 require 'rspec/core/rake_task'
 require 'yaml'
 require 'csv'
-require 'byebug'
-require_relative 'scripts/pull_latest_cves'
+# require 'byebug'
+# commented out for travis build
+# require_relative 'scripts/pull_latest_cves'
 require_rel 'spec'
+
 
 desc 'Run the specs by default'
 task default: :spec
@@ -18,13 +20,14 @@ namespace :pull do
   end
 end
 
-namespace :cve do
-  desc 'Use cve_spec and cve_helper to check incoming cve*** yaml files'
-  task :check_new_cves do
-    puts "Reading the ymls..."
-    ruby 'cve_spec'
-  end
-end
+# commented out for travis build
+# namespace :cve do
+#   desc 'Use cve_spec and cve_helper to check incoming cve*** yaml files'
+#   task :check_new_cves do
+#     puts "Reading the ymls..."
+#     ruby 'cve_spec'
+#   end
+# end
 
 namespace :git do
   workingDir = "#{ENV['GIT_REPOSITORY']}";
