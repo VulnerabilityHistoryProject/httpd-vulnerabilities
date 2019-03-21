@@ -42,7 +42,6 @@ describe 'CVE yml file' do
             expect(vuln['unit_tested']['answer'].to_s).not_to be_empty
             expect(vuln['discovered']['answer'].to_s).not_to be_empty
             expect(vuln['subsystem']['answer'].to_s).not_to be_empty
-            expect(vuln['major_events']['answer'].to_s).not_to be_empty
             expect(vuln['mistakes']['answer'].to_s).not_to be_empty
           end
         end
