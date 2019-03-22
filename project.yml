@@ -1,0 +1,14 @@
+name: HTTPD
+fullname: Apache HTTPD Web Server
+subdomain: httpd
+bg_color: '#af204c'
+project_url: https://httpd.apache.org/
+description: |
+  Apache HTTPD is the most popular web server in the world.
+git_commit_url_prefix: https://github.com/apache/httpd/commit/
+github_search_url_prefix: https://github.com/apache/httpd/search?utf8=✓&q=
+github_edit_cve_url_prefix: https://github.com/VulnerabilityHistoryProject/httpd-vulnerabilities/edit/dev/cves/
+vulnerabilities_description: |
+  These vulnerabilities are reported by the Apache HTTPD team [on their website](https://httpd.apache.org/security_report.html)
+developers_description: |
+  The following is a list of developers who are involved in code that was found to be vulnerable. Specifically, developers end up here if they were the author of a commit to code that was, at some point in time, fixed for a vulnerability. Note that this is NOT a comprehensive list.
