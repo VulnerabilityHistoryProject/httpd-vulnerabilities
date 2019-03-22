@@ -1,0 +1,4 @@
+# A "mega commit" is a commit that touched thousands of files
+# We ignore getting file information for these commits as they
+# bog down VHP unnnecessarily. Instead, we add a note here
+[]
