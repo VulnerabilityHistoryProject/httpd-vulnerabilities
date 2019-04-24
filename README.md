@@ -8,7 +8,11 @@ Every push and pull request is run against our integrity checkers on Travis. Cli
 
 # For SWEN 331 Students
 
+
+Please see the assignments folder for information about your project.
+
 Please see the [assignments](assignment/) folder for information about your project.
+
 
 ## Testing project locally
 
@@ -18,6 +22,7 @@ Please see the [assignments](assignment/) folder for information about your proj
   4. Run `bundle exec rake`
 
   If the output has no *failures*, then it checks out!
+
 
  ![Test Successful Screenshot](/screenshots/successful-unit-test.png)
 
