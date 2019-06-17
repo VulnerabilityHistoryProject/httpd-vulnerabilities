@@ -52,6 +52,7 @@ Dir["#{options[:cves]}/**/*.yml"].each do |file|
   end
 end
 filepaths = filepaths.flatten.sort.uniq.delete_if {|f| f == 'DEPS' }
+filepaths = git_utils.only_source_code(filepaths)
 
 puts "Vulnerable files: #{filepaths}"
 
