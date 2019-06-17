@@ -6,6 +6,7 @@ require 'pp'
 require 'yaml'
 require_relative 'git_saver'
 require_relative 'git_log_utils'
+require_relative 'helpers'
 
 options = {}
 options[:gitlog_json] = 'commits/gitlog.json'
@@ -53,7 +54,7 @@ Dir["#{options[:cves]}/**/*.yml"].each do |file|
   end
 end
 filepaths = filepaths.flatten.sort.uniq.delete_if {|f| f == 'DEPS' }
-filepaths = GitLogUtils.new(nil).only_source_code(filepaths)
+filepaths = only_source_code(filepaths)
 
 puts "Vulnerable files: #{filepaths}"
 

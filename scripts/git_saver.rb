@@ -1,4 +1,5 @@
 require 'git'
+require_relative 'helpers'
 
 # A collection of utilitize to save thing to git
 class GitSaver
@@ -10,7 +11,7 @@ class GitSaver
   end
 
   # Lookup and save a commit
-  def add(sha, skip_existing = true)
+  def add(sha, skip_existing = true, only_source_code = true)
     if @gitlog.key? sha
       if skip_existing
         puts "#{sha} already exists in gitlog.json, skipping"
@@ -34,7 +35,7 @@ class GitSaver
     @gitlog[sha][:churn]      = @gitlog[sha][:insertions].to_i +
                                 @gitlog[sha][:deletions].to_i
     @gitlog[sha][:filepaths]  = diff.stats[:files]
-
+    @gitlog[sha][:filepaths]  = only_source_code(diff.stats[:files]) if only_source_code
   end
 
   def save

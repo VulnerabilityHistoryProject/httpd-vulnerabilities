@@ -5,6 +5,7 @@ require 'optparse'
 require 'pp'
 require 'yaml'
 require_relative 'git_saver'
+require_relative 'helpers'
 
 options = {}
 options[:gitlog_json] = 'commits/gitlog.json'
