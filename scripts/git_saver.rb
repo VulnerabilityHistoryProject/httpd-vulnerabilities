@@ -34,6 +34,7 @@ class GitSaver
     @gitlog[sha][:churn]      = @gitlog[sha][:insertions].to_i +
                                 @gitlog[sha][:deletions].to_i
     @gitlog[sha][:filepaths]  = diff.stats[:files]
+
   end
 
   def save
