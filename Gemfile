@@ -9,4 +9,4 @@ gem 'git'
 # we don't need it for everyone
 # gem 'nokogiri'
 # gem 'mechanize'
- gem 'require_all'
+gem 'require_all'
