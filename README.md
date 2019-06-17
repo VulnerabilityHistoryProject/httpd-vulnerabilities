@@ -31,7 +31,7 @@ Please see the [assignments](assignment/) folder for information about your proj
 
 # Generate "Weeklies" Git Log Reports
 
-Make sure you have the Chromium repo cloned in `tmp/src`. From the root of the repo, run:
+Make sure you have the HTTPD repo cloned in `tmp/src`. From the root of the repo, run:
 
 ```
 $ scripts/generate_weeklies.rb --skip-existing
