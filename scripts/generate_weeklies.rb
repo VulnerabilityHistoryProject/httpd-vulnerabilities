@@ -48,8 +48,8 @@ git_utils = GitLogUtils.new(options[:repo])
 puts "Generating weekly reports"
 weekly_reporter = WeeklyReport.new(options)
 ymls = Dir["#{options[:cves]}/**/*.yml"].to_a
-Parallel.each(ymls, in_processes: 8, progress: 'Generating weeklies') do |file|
-#ymls.each do |file|
+# Parallel.each(ymls, in_processes: 8, progress: 'Generating weeklies') do |file|
+ymls.each do |file|
   yml = YAML.load(File.open(file)).deep_symbolize_keys
   fix_commits = yml[:fixes].inject([]) do |memo, fix|
     memo << fix[:commit] unless fix[:commit].blank?
@@ -60,6 +60,9 @@ Parallel.each(ymls, in_processes: 8, progress: 'Generating weeklies') do |file|
   rescue
     puts "ERROR #{file}: could not get files for #{fix_commits}"
   end
-  weekly_reporter.add(yml[:CVE], offenders)
+  # puts "DONE! Generating weeklies for: #{offenders}"
+  source_code_offenders = git_utils.only_source_code(offenders)
+  # puts "Only source code: #{source_code_offenders}"
+  # weekly_reporter.add(yml[:CVE], offenders)
   # print '.'
 end

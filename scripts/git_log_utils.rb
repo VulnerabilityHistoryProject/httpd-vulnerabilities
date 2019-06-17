@@ -19,7 +19,14 @@ class GitLogUtils
       errs << e.message
       print '?'
     end
+    puts errs if errs.size > 0
     return files.flatten.uniq
+  end
+
+  def only_source_code(files)
+    files.select do |f|
+      f.ends_with?('.c') || f.ends_with?('.h')
+    end
   end
 
 end
