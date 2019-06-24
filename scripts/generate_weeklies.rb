@@ -60,7 +60,7 @@ Parallel.each(ymls, in_processes: 8, progress: 'Generating weeklies') do |file|
   rescue
     puts "ERROR #{file}: could not get files for #{fix_commits}"
   end
-  source_code_offenders = git_utils.only_source_code(offenders)
+  source_code_offenders = only_source_code(offenders)
   weekly_reporter.add(yml[:CVE], offenders)
   print '.'
 end
