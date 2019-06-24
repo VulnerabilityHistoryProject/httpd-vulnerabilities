@@ -56,7 +56,7 @@ class WeeklyReport
 
   def any_owners_files?(files)
     files.inject(false) do |any_owners, file|
-      any_owners || file.match?(/OWNERS/)
+      any_owners || file.to_s.match?(/OWNERS/)
     end
   end
 
