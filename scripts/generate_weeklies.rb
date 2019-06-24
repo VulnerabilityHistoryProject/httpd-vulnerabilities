@@ -9,6 +9,7 @@ require 'parallel'
 require 'active_support/core_ext/hash'
 require_relative 'git_log_utils'
 require_relative 'weekly_report'
+require_relative 'helpers'
 
 options = {}
 options[:weeklies] = 'commits/weeklies'
