@@ -36,11 +36,10 @@ describe 'CVE yml file' do
           end
         end
 
-        it 'have answers for description, unit_tested, discovered, subsystem filled out' do
+        it 'have answers for description, unit_tested, subsystem, mistakes filled out' do
           if(vuln['curated'])
             expect(vuln['description'].to_s).not_to be_empty
             expect(vuln['unit_tested']['answer'].to_s).not_to be_empty
-            expect(vuln['discovered']['answer'].to_s).not_to be_empty
             expect(vuln['subsystem']['answer'].to_s).not_to be_empty
             expect(vuln['mistakes']['answer'].to_s).not_to be_empty
           end
