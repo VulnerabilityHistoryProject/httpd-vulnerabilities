@@ -9,22 +9,19 @@ Every push and pull request is run against our integrity checkers on Travis. Cli
 # For SWEN 331 Students
 
 
-Please see the assignments folder for information about your project.
-
-Please see the [assignments](assignment/) folder for information about your project.
-
+Please see your course website for instructions. This README is more for people managing this data.
 
 ## Testing project locally
 
-  1. You'll need Ruby 2.4+
-  2. Run `gem install bundler` (if you don't already have bundler)
-  3. `cd` to the root of this repo, run `bundle install`
-  4. Run `bundle exec rake`
+1. You'll need Ruby 2.4+
+2. Run `gem install bundler` (if you don't already have bundler)
+3. `cd` to the root of this repo, run `bundle install`
+4. Run `bundle exec rake`
 
-  If the output has no *failures*, then it checks out!
+If the output has no *failures*, then it checks out!
 
 
- ![Test Successful Screenshot](/screenshots/successful-unit-test.png)
+![Test Successful Screenshot](/screenshots/successful-unit-test.png)
 
 ##
 ### [Contributor Notes](https://github.com/andymeneely/httpd-vulnerabilities/blob/master/CONTRIBUTING.md)
