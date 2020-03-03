@@ -1,7 +1,7 @@
 require 'yaml'
 
 # MIGRATION STATUS: Done.
-raise 'Migration already performed.' # Don't run this. Kept for posterity
+# raise 'Migration already performed.' # Don't run this. Kept for posterity
 
 def order_of_keys
   %w(
@@ -10,11 +10,11 @@ def order_of_keys
     curated_instructions
     curated
     reported_instructions
-    reported_date
+    reported
     announced_instructions
-    announced_date
+    announced
     published_instructions
-    published_date
+    published
     description_instructions
     description
     bounty_instructions
@@ -34,7 +34,6 @@ def order_of_keys
     subsystem
     interesting_commits
     i18n
-    sandbox
     ipc
     lessons
     mistakes
@@ -118,7 +117,7 @@ apply here, then choose the best one and mention the others in CWE_note.
 end
 
 def i18n_question
-  <<~EOS
+  instructions = <<~EOS
   Was the feature impacted by this vulnerability about internationalization
   (i18n)? An internationalization feature is one that enables people from all
   over the world to use the system. This includes translations, locales,
@@ -127,6 +126,7 @@ def i18n_question
   Answer should be boolean. Write a note about how you came to the conclusions
   you did.
   EOS
+  return { 'instructions' => instructions, 'note' => nil, 'answer' => nil }
 end
 
 def nickname_instructions
@@ -159,34 +159,53 @@ e.g. clipboard, model, view, controller, mod_dav, ui, authentication
 
 end
 
+def ipc_question
+  instructions = <<~EOS
+Did the feature that this vulnerability affected use inter-process
+communication? IPC includes OS signals, pipes, stdin/stdout, message
+passing, and clipboard. Writing to files that another program in this
+software system reads is another form of IPC.
+
+Answer should be boolean. Explain your answer
+  EOS
+  return {
+    'question' => instructions,
+    'answer' => nil,
+    'note' => nil
+  }
+end
+
 
 ymls = Dir['cves/*.yml'] + ['skeletons/cve.yml']
 ymls.each do |yml_file|
     h = YAML.load(File.open(yml_file, 'r').read)
-    h['yaml_instructions'] = updated_yaml_instructions
-    h['autodiscoverable'] = autodiscoverable_question
-    h['specification'] = spec_question
-    h['CWE_instructions'] = cwe_inst
-    h['i18n']['question'] = i18n_question
-    h['nickname_instructions'] = nickname_instructions
-    h['nickname'] = nil
-    h['subsystem']['question'] = subsystem_instructions
+    unless h['curated']
+      h['yaml_instructions'] = updated_yaml_instructions
+      h['autodiscoverable'] = autodiscoverable_question
+      h['specification'] = spec_question
+      h['CWE_instructions'] = cwe_inst
+      h['i18n'] = i18n_question
+      h['nickname_instructions'] = nickname_instructions
+      h['nickname'] = nil
+      h['subsystem']['question'] = subsystem_instructions
+      h['ipc'] = ipc_question
 
-    # Reconstruct the hash in the order we specify
-    out_h = {}
-    order_of_keys.each do |key|
-      out_h[key] = h[key]
-    end
-
-    # Generate the new YML, clean it up, write it out.
-    File.open(yml_file, "w+") do |file|
-      yml_txt = out_h.to_yaml[4..-1] # strip off ---\n
-      stripped_yml = ""
-      yml_txt.each_line do |line|
-        stripped_yml += "#{line.rstrip}\n" # strip trailing whitespace
+      # Reconstruct the hash in the order we specify
+      out_h = {}
+      order_of_keys.each do |key|
+        out_h[key] = h[key]
       end
-      file.write(stripped_yml)
-      print '.'
+
+      # Generate the new YML, clean it up, write it out.
+      File.open(yml_file, "w+") do |file|
+        yml_txt = out_h.to_yaml[4..-1] # strip off ---\n
+        stripped_yml = ""
+        yml_txt.each_line do |line|
+          stripped_yml += "#{line.rstrip}\n" # strip trailing whitespace
+        end
+        file.write(stripped_yml)
+        print '.'
+      end
     end
 end
 puts 'Done!'
