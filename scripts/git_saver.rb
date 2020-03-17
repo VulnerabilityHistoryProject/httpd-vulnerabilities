@@ -34,7 +34,7 @@ class GitSaver
     @gitlog[sha][:deletions]  = diff.deletions
     @gitlog[sha][:churn]      = @gitlog[sha][:insertions].to_i +
                                 @gitlog[sha][:deletions].to_i
-    @gitlog[sha][:filepaths]  = only_source_code(diff.stats[:files])
+    @gitlog[sha][:filepaths]  = keep_only_source_code(diff.stats[:files])
   end
 
   def save
