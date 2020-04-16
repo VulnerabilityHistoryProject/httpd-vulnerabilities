@@ -32,7 +32,7 @@ def replace_in_file(file, pattern, replacement)
   File.open(file, "w") { |f| f.write(str) }
 end
 
-def only_source_code(files)
+def keep_only_source_code(files)
   files.select do |f|
     f.end_with?('.c') ||
     f.end_with?('.cc') ||
@@ -49,6 +49,7 @@ def only_source_code(files)
     f.end_with?('.sb') ||
     f.end_with?('.scons') ||
     f.end_with?('.sh') ||
+    f.end_with?('.in') ||
     f.end_with?('DEPS') ||
     f.end_with?('Makefile')
   end
