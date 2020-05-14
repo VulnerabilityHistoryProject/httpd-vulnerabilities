@@ -35,12 +35,12 @@ class WeeklyReport
     {
       week: n,
       date: nth_week(n),
-      commits: 0,
+      commits: [],
+      refactors: [],
+      reverts: [],
       insertions: 0,
       deletions: 0,
-      reverts: 0,
       rolls: 0,
-      refactors: 0,
       test_files: 0,
       files: [],
       developers: [],
@@ -102,12 +102,12 @@ class WeeklyReport
       week_n = week_num(commit.author.date)
       calendar[week_n] ||= init_weekly(week_n)
       weekly = calendar[week_n]
-      weekly[:commits]    += 1
+      weekly[:commits]    << sha
+      weekly[:refactors]  << sha if refactor?(commit.message)
+      weekly[:reverts]    << sha if revert?(commit.message)
       weekly[:insertions] += diff.insertions
       weekly[:deletions]  += diff.deletions
-      weekly[:reverts]    += revert?(commit.message) ? 1 : 0
       weekly[:rolls]      += roll?(commit.message) ? 1 : 0
-      weekly[:refactors]  += refactor?(commit.message) ? 1 : 0
       weekly[:test_files] += any_owners_files?(commit_files) ? 1 : 0
       weekly[:ownership_change] ||= any_owners_files?(commit_files)
       append_uniq!(weekly, :files, commit_files & offenders)
