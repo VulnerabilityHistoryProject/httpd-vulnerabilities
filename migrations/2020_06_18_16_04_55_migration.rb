@@ -10,10 +10,9 @@ require 'open3'
 # Make sure you have the latest VHP shepherd tools installed
 # Run this from the top of the repo.
 
-@@GITLOG_JSON = JSON.load('commits/gitlog.json')
+@@GITLOG_JSON = JSON.parse(File.read('commits/gitlog.json'))
 
 def order_of_keys
-  # This is just an example - edit to your liking.
   %w(
     CVE
     yaml_instructions
@@ -78,7 +77,6 @@ def update_commitlist(h)
     #   # Ok, we know it doesn't exist. Now look it up in gitlog.json
     #
     # end
-
   end
 end
 
@@ -87,9 +85,9 @@ ymls.each do |yml_file|
   h = YAML.load(File.open(yml_file, 'r').read)
 
   # Do stuff to your hash here.
-  h[:fixes] = update_commitlist(h[:fixes])
-  h[:vccs] = update_commitlist(h[:vccs])
-  h[:interesting_commits][:commits] = update_commitlist(h[:interesting_commits][:commits])
+  h["fixes"] = update_commitlist(h["fixes"])
+  # h[:vccs] = update_commitlist(h[:vccs])
+  # h[:interesting_commits][:commits] = update_commitlist(h[:interesting_commits][:commits])
 
   # Reconstruct the hash in the order we specify
   out_h = {}
