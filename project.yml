@@ -12,3 +12,46 @@ vulnerabilities_description: |
   These vulnerabilities are reported by the Apache HTTPD team [on their website](https://httpd.apache.org/security_report.html)
 developers_description: |
   The following is a list of developers who are involved in code that was found to be vulnerable. Specifically, developers end up here if they were the author of a commit to code that was, at some point in time, fixed for a vulnerability. Note that this is NOT a comprehensive list.
+
+# A file that ends with this string is considered to be source code
+# The way I found these was to do this at the root of the git repo
+# find -type f | cut -c 3- | sed 's/.*\.//' | sort | uniq
+source_code_extensions:
+  - makefile
+  - Makefile
+  - .awk
+  - .buildconf
+  - .c
+  - .cmake
+  - .cocci
+  - .conf
+  - .css
+  - .d
+  - .def
+  - .dsp
+  - .dtd
+  - .h
+  - .in
+  - .inc
+  - .js
+  - .ksh
+  - .ldap
+  - .lua
+  - .m4
+  - .manifest
+  - .mk
+  - .perl
+  - .pl
+  - .pro
+  - .properties
+  - .ps
+  - .py
+  - .rc
+  - .sh
+  - .tr
+  - .vbs
+  - .win
+  - .xml
+  - .xsl
+  - .y
+  - .yml
