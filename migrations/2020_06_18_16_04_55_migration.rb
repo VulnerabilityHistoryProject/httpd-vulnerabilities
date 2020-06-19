@@ -109,10 +109,8 @@ ymls.each do |yml_file|
 
   # Do stuff to your hash here.
   h["fixes"] = update_commitlist(h["fixes"])
-  # h[:vccs] = update_commitlist(h[:vccs])
-  # h[:interesting_commits][:commits] = update_commitlist(h[:interesting_commits][:commits])
-
-
+  h["vccs"] = update_commitlist(h["vccs"])
+  h["interesting_commits"]["commits"] = update_commitlist(h["interesting_commits"]["commits"])
 
   # Reconstruct the hash in the order we specify
   out_h = {}
