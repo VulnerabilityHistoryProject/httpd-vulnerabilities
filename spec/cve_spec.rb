@@ -12,7 +12,7 @@ describe 'CVE yml file' do
 
       let(:vuln) { YAML.load(File.open(file)) }
 
-      it('has all the proper keys key')   { expect(vuln).to include('CVE') }
+      it('has CVE key')   { expect(vuln).to include('CVE') }
       it('has fixes key') { expect(vuln).to include('fixes') }
       it('has vccs key')  { expect(vuln).to include('vccs') }
 
@@ -30,30 +30,30 @@ describe 'CVE yml file' do
 
       context 'when curated, it must' do
 
-        it 'have the CWE filled out' do
-          if(vuln['curated'])
+        it 'has the CWE filled out' do
+          if at_curation_level?(vuln, 1)
             expect(vuln['CWE'].to_s).not_to be_empty
           end
         end
 
-        it 'have a description and mistakes made written' do
-          if(vuln['curated'])
+        it 'has a description and mistakes made written' do
+          if at_curation_level?(vuln, 1)
             expect(vuln['description'].to_s).not_to be_empty
             expect(vuln['mistakes']['answer'].to_s).not_to be_empty
           end
         end
 
-        it 'have answers for unit_tested questions' do
-          if(vuln['curated'] && vuln['i18n']!=nil)
+        it 'has answers for unit_tested questions' do
+          if at_curation_level?(vuln, 2)
             expect(vuln['unit_tested']['code']).to be(true).or(be(false))
-            expect(vuln['unit_tested']['code_answer'].to_s).not_to be_empty
+            expect(vuln['unit_tested']['code_note'].to_s).not_to be_empty
             expect(vuln['unit_tested']['fix']).to be(true).or(be(false))
-            expect(vuln['unit_tested']['fix_answer'].to_s).not_to be_empty
+            expect(vuln['unit_tested']['fix_note'].to_s).not_to be_empty
           end
         end
 
-        it 'have answers discovered and autodiscoverable' do
-          if(vuln['curated'] && vuln['autodiscoverable']!=nil)
+        it 'has answers discovered and autodiscoverable' do
+          if at_curation_level?(vuln, 2)
             expect(vuln['discovered']['answer'].to_s).not_to be_empty
             expect(vuln['discovered']['automated']).to be(true).or(be(false))
             expect(vuln['discovered']['contest']).to be(true).or(be(false))
@@ -63,31 +63,30 @@ describe 'CVE yml file' do
           end
         end
 
-        it 'have answers for specification' do
-          if(vuln['curated'] && vuln['i18n']!=nil)
+        it 'has answers for specification' do
+          if at_curation_level?(vuln, 2)
             expect(vuln['specification']['answer_note'].to_s).not_to be_empty
             expect(vuln['specification']['answer']).to be(true).or(be(false))
           end
         end
 
-        it 'have properly formatted subsystem names' do
-          if(vuln['curated'] && vuln['i18n']!=nil)
+        it 'has properly formatted subsystem names' do
+          if at_curation_level?(vuln, 2)
             expect(vuln['subsystem']['answer'].to_s).not_to be_empty
-
             subsystem_str = Array[vuln['subsystem']['name']].join
             expect(subsystem_str).to match(/^[a-zA-Z\s0-9\_\-\@]+$/)
           end
         end
 
-        it 'have answers for i18n' do
-          if(vuln['curated'] && vuln['i18n']!=nil)
+        it 'has answers for i18n' do
+          if at_curation_level?(vuln, 2)
             expect(vuln['i18n']['note'].to_s).not_to be_empty
             expect(vuln['i18n']['answer']).to be(true).or(be(false))
           end
         end
 
-        it 'have answers for ipc' do
-          if(vuln['curated'] && vuln['ipc']!=nil)
+        it 'has answers for ipc' do
+          if at_curation_level?(vuln, 2)
             expect(vuln['ipc']['note'].to_s).not_to be_empty
             expect(vuln['ipc']['answer']).to be(true).or(be(false))
           end

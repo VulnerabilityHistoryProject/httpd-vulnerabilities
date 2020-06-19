@@ -37,3 +37,7 @@ def valid_git_hash_or_empty(str)
     str.to_s.nil? ||
     str =~ /[0-9a-z]{40}/
 end
+
+def at_curation_level?(vuln, level)
+  vuln['curation_level'] >= level
+end

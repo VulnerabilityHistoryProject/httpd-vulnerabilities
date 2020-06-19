@@ -5,3 +5,4 @@ vul_data
 tmp/
 !tmp/.gitkeep
 
+/.byebug_history
