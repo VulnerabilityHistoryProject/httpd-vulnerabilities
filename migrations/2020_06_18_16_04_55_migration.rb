@@ -85,8 +85,8 @@ def update_commitlist(h)
         if stderr.empty?
           {
             "commit" => stdout.strip,
-            "note" => <<~EOS
-              #{entry["note"]}
+            "note" => <<~EOS.strip
+              #{entry["note"].to_s.lines.join("\n")}
 
               Formerly #{sha} before HTTPD rewrote Git history.
             EOS
