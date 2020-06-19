@@ -1,6 +1,7 @@
 require 'yaml'
 require 'json'
 require 'open3'
+require 'byebug'
 
 # MIGRATION STATUS: Not done yet.
 # raise 'Migration already performed.' # Don't run this migration. Kept for posterity
@@ -75,10 +76,28 @@ def update_commitlist(h)
     else
       # Ok, we know it doesn't exist. Now look it up in gitlog.json
       if @gitlog_json.key? sha
-        "WE'VE GOT IT!!"
+        m = @gitlog_json[sha]["message"]
+        svn_id = m.lines.select {|l| l.match? /git-svn-id/ }.join.strip
+        grep_cmd = <<~EOS.strip
+          git -C ./tmp/src rev-list --all --grep="#{svn_id}" --
+        EOS
+        stdout, stderr, status = Open3.capture3(grep_cmd)
+        if stderr.empty?
+          {
+            "commit" => stdout.strip,
+            "note" => <<~EOS
+              #{entry["note"]}
+
+              Formerly #{sha} before HTTPD rewrote Git history.
+            EOS
+          }
+        else
+          warn "ERROR getting commit #{sha}. #{stderr}"
+          entry
+        end
       else
-        print 'X'
-        "UH OH"
+        warn "ERROR commit #{sha} does not exist in gitlog.json"
+        entry
       end
     end
   end
