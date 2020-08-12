@@ -51,3 +51,6 @@ class PullLatestCVEs
   end
 
 end
+
+# This is a standalone script
+PullLatestCVEs.new.run

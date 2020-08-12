@@ -4,6 +4,7 @@ Data for [vulnerabilityhistory.org](http://vulnerabilityhistory.org/)
 # Travis Build [![Build Status](https://travis-ci.org/VulnerabilityHistoryProject/httpd-vulnerabilities.svg?branch=master)](https://travis-ci.org/VulnerabilityHistoryProject/httpd-vulnerabilities)
 
 Every push and pull request is run against our integrity checkers on Travis. Click on the above tag to see the status of the build.
+
 ##
 
 # For SWEN 331 Students
@@ -28,59 +29,62 @@ If the output has no *failures*, then it checks out!
 
 # Generate "Weeklies" Git Log Reports
 
+Use the VHP shepherd tools for this.
+
 Make sure you have the HTTPD repo cloned in `tmp/src`. From the root of the repo, run:
 
 ```
-$ scripts/generate_weeklies.rb --skip-existing
+$ vhp weeklies
 ```
 
-Or for a clean build, you can delete all weeklies and start over.
-
-For a list of options it supports, run `scripts/generate_weeklies.rb`
+For a list of all options do `vhp help weeklies`.
 
 
-# Populate gitlog.json with a single SHA
+# Populate gitlog.json with any mentioned git commits in CVE yamls
+
+Use the VHP shepherd tools for this.
+
+When you want to make sure that any commit that's mentioned in a YAML is also in the gitlog, you can run this script.
+
+_This will NOT figure out commits between VCC and Fix, however.__
 
 Be in the root of this repository, and run:
 
 ```
-ruby scripts/add_commit.rb --sha commit_sha_to_add
-```
-
-See the source code for other options.
-
-# Populate gitlog.json with any mentioned SHA in CVE yamls
-
-When you want to make sure that any commit that's mentioned in a YAML is also in the gitlog, you can run this script. It will NOT figure out commits between VCC and Fix, however.
-
-Be in the root of this repository, and run:
-
-```
-ruby scripts/add_mentioned_commits.rb
-```
-
-This will overwrite any commit and take a LONG time (5-10 minutes). If you just want to go quickly and add what's not already there, use:
-
-```
-ruby scripts/add_mentioned_commits.rb --skip-existing
-```
-
-So if a commit is already in gitlog.json then we won't look it up in the GitLog. This is a much faster option.
-
-By default, this script checks the `tmp/src` directory. If you need, say, `v8`, there's an option for that.
-
-# Populate gitlog.json with any SHA to a vulnerable file
-
-This script will do a `git log` on every vulnerable file and add it to the git log. Takes much longer than its peers above.
-
-```
-ruby scripts/add_vulnerable_file_commits.rb
+$ vhp loadcommits
 ```
 
 # Download Latest CVEs
 
-Run the HTTPD scraper to get all CVEs, and don't touch the ones that don't exist.
+To run this script, you'll need Mechanize installed. We intentionally don't put Mechanize into the `Gemfile` because that could (has) broken or slowed the build. Instead, you'll need to install locally:
 
-This won't add fixes, just fill in the CVE into the skeleton.
+```
+$ gem install mechanize
+```
 
-`$ rake pull:cves`
+Then, from the root of the repo, run the HTTPD scraper to get all CVEs, generating skeleton YMLs for ones that already exist. This won't add fixes, just fill in the CVE into the skeleton.
+
+```
+$ ruby scripts/pull_latest_cves.rb
+```
+
+Be sure to inspect this before you commit them.
+
+# Which CVEs don't have fixes?
+
+Use shepherd tools:
+
+```
+$ vhp nofixes
+```
+
+# Finding Fixes for HTTPD CVEs
+
+We don't have a very automated process for getting fixes, but fortunately they don't come out with new vulnerabilities so fast that we need automation. Here's some places to look:
+
+* On the CVE database entry, sometimes they mention a commit if you're lucky.
+* Sometimes a commit message will mention the CVE. Use `git log --grep="CVE-XXXX-XXXXX"` to find your CVE.
+* Often, a commit will be done BEFORE a CVE is registered, in which case you'll want to do `git log --grep` but looking for key words.
+* You can also take a look at their [CHANGES](https://github.com/apache/httpd/blob/trunk/CHANGES) file for similar key words. Be sure to look at the "affects" versions on the security page (this is [2.4's for example](https://httpd.apache.org/security/vulnerabilities_24.html)) and make sure the date makes sense.
+* In a pinch, you can use GitHub to do a blame on the CHANGES file. HTTPD devs will often edit the CHANGES in the same commit as a vulnerability fix. If not, it's in a nearby commit in time.
+* In a real pinch, you can just do `git log` around the dates you've seen and look at all commits - this is tedious and a last resort. **Note** that the CVE year is not a good indicator of when the vulnerability was fixed - sometimes developers will register a CVE years after they fixed it. Use the original dates from the repo.

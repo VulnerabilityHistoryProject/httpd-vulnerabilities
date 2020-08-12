@@ -4,7 +4,7 @@ require 'yaml'
 require 'csv'
 # require 'byebug'
 # commented out for travis build
-# require_relative 'scripts/pull_latest_cves'
+
 require_rel 'spec'
 
 
@@ -12,13 +12,6 @@ desc 'Run the specs by default'
 task default: :spec
 
 RSpec::Core::RakeTask.new(:spec)
-
-namespace :pull do
-  desc 'Download latest CVEs from httpd.apache.org & create YML skeletons'
-  task :cves do
-    PullLatestCVEs.new.run
-  end
-end
 
 # commented out for travis build
 # namespace :cve do
