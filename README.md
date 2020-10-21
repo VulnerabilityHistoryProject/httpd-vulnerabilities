@@ -1,11 +1,9 @@
 # httpd-vulnerabilities
 Data for [vulnerabilityhistory.org](http://vulnerabilityhistory.org/)
 
-# Travis Build [![Build Status](https://travis-ci.org/VulnerabilityHistoryProject/httpd-vulnerabilities.svg?branch=master)](https://travis-ci.org/VulnerabilityHistoryProject/httpd-vulnerabilities)
+# The Build ![YML & Editorial Checkers](https://github.com/VulnerabilityHistoryProject/httpd-vulnerabilities/workflows/YML%20&%20Editorial%20Checkers/badge.svg)
 
-Every push and pull request is run against our integrity checkers on Travis. Click on the above tag to see the status of the build.
-
-##
+Every push and pull request is run against our integrity checkers on GitHub Actions. Click on the above tag to see the status of the build.
 
 # For SWEN 331 Students
 
@@ -20,12 +18,6 @@ Please see your course website for instructions. This README is more for people 
 4. Run `bundle exec rake`
 
 If the output has no *failures*, then it checks out!
-
-
-![Test Successful Screenshot](/screenshots/successful-unit-test.png)
-
-##
-### [Contributor Notes](https://github.com/andymeneely/httpd-vulnerabilities/blob/master/CONTRIBUTING.md)
 
 # Generate "Weeklies" Git Log Reports
 
