@@ -13,6 +13,8 @@ vulnerabilities_description: |
   These vulnerabilities are reported by the Apache HTTPD team [on their website](https://httpd.apache.org/security_report.html)
 developers_description: |
   The following is a list of developers who are involved in code that was found to be vulnerable. Specifically, developers end up here if they were the author of a commit to code that was, at some point in time, fixed for a vulnerability. Note that this is NOT a comprehensive list.
+test_filepath:
+  - test
 
 # A file that ends with this string is considered to be source code
 # The way I found these was to do this at the root of the git repo
