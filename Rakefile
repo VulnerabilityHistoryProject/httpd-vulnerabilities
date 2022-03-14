@@ -4,7 +4,7 @@ require 'yaml'
 require 'csv'
 # require 'byebug'
 # commented out for travis build
-# require_relative 'scripts/pull_latest_cves'
+require_relative 'scripts/pull_latest_cves'
 require_rel 'spec'
 
 

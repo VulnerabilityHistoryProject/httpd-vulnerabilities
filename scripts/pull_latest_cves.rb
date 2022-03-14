@@ -12,7 +12,9 @@ class PullLatestCVEs
   end
 
   def is_cve?(link)
-    link.href.include? "cve.mitre.org"
+    if link.href != nil
+      link.href.include? "cve.mitre.org"
+    end
   end
 
   def get_cve(link)
